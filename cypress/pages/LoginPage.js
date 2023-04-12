@@ -6,6 +6,7 @@ export class LoginPage {
     this.errorMessage = ".error-message-container.error";
     this.logoPage = ".app_logo";
     this.burgerMenuButton = "#react-burger-menu-btn";
+    this.errorMessageText = '[data-test="error"]';
   }
 
   visit() {
@@ -22,6 +23,10 @@ export class LoginPage {
     cy.get(this.errorMessage).should("be.visible");
   }
 
+  validateMessageError(messageText) {
+    cy.get(this.errorMessageText).should("contain.text", messageText);
+  }
+
   validateSuccessfulLogin() {
     cy.get(this.logoPage).should("be.visible");
     cy.get(this.burgerMenuButton).should("be.visible");
@@ -30,6 +35,19 @@ export class LoginPage {
   login(email, password) {
     cy.get(this.usernameInput).type(email);
     cy.get(this.passwordInput).type(password);
+    cy.get(this.loginButton).click();
+  }
+
+  loginWithoutUsername(password) {
+    cy.get(this.passwordInput).type(password);
+    cy.get(this.loginButton).click();
+  }
+
+  loginWithoutPassword(email) {
+    cy.get(this.usernameInput).type(email);
+    cy.get(this.loginButton).click();
+  }
+  loginWithoutUsernameAndPassword() {
     cy.get(this.loginButton).click();
   }
 }
