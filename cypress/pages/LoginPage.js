@@ -1,12 +1,22 @@
+import {
+  BURGUERMENU_BUTTON,
+  ERROR_MESSAGE,
+  ERROR_MESSAGE_TEXT,
+  LOGIN_BUTTON,
+  LOGOPAGE_IMAGE,
+  PASSWORD_FIELD,
+  USERNAME_FIELD,
+} from "../locators/loginPage";
+
 export class LoginPage {
   constructor() {
-    this.usernameInput = "#user-name";
-    this.passwordInput = "#password";
-    this.loginButton = "#login-button";
-    this.errorMessage = ".error-message-container.error";
-    this.logoPage = ".app_logo";
-    this.burgerMenuButton = "#react-burger-menu-btn";
-    this.errorMessageText = '[data-test="error"]';
+    this.usernameInput = USERNAME_FIELD;
+    this.passwordInput = PASSWORD_FIELD;
+    this.loginButton = LOGIN_BUTTON;
+    this.errorMessage = ERROR_MESSAGE;
+    this.logoPage = LOGOPAGE_IMAGE;
+    this.burgerMenuButton = BURGUERMENU_BUTTON;
+    this.errorMessageText = ERROR_MESSAGE_TEXT;
   }
 
   visit() {

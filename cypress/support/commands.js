@@ -24,14 +24,17 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add("login", (email, password) => {
+Cypress.Commands.add("login", () => {
   const usernameInput = "#user-name";
   const passwordInput = "#password";
   const loginButton = "#login-button";
 
-  cy.visit("/");
-
-  cy.get(usernameInput).type(email);
-  cy.get(passwordInput).type(password);
+  let credentialData;
+  cy.fixture("saucedemoCredentials").then((fdata) => {
+    cy.visit("/");
+    credentialData = fdata;
+    cy.get(usernameInput).type(credentialData.valid_username);
+    cy.get(passwordInput).type(credentialData.valid_password);
+  });
   cy.get(loginButton).click();
 });

@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node cypress/scripts/runner.js",
     "cy:open": "npx cypress open --env allure=true --config specPattern=cypress/e2e/** --browser chrome",
+    "cy:run:test":"cypress run --browser chrome --spec cypress/e2e/** --env allure=true",
     "cy:run": "DEBUG=allure-plugin* npx cypress run --config specPattern=cypress/e2e/* --env allure=true --browser chrome",
     "cy:run:firefox": "DEBUG=allure-plugin* npx cypress run --config specPattern=cypress/e2e/* --env allure=true --browser firefox",
     "cy:run:edge": "DEBUG=allure-plugin* npx cypress run --config specPattern=cypress/e2e/* --env allure=true --browser edge",
