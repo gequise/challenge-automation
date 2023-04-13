@@ -1,4 +1,8 @@
-import { CART_ITEM, CART_ITEM_LABEL } from "../locators/cartPage";
+import {
+  CART_ITEM,
+  CART_ITEM_LABEL,
+  REMOVE_BUTTON,
+} from "../locators/cartPage";
 import {
   ADD_TO_CART_BUTTON,
   INVENTORY_BUTTON,
@@ -22,6 +26,7 @@ export class ProductPage {
     this.cartButton = SHOPPING_CART_BUTTON;
     this.cartItem = CART_ITEM;
     this.cartItemLabel = CART_ITEM_LABEL;
+    this.removeButton = REMOVE_BUTTON;
     this.itemName = "";
     this.itemPrice = "";
   }
@@ -66,6 +71,7 @@ export class ProductPage {
       .find(this.inventoryItemLabel)
       .then(($label) => {
         this.itemName = $label.find(this.productName).text();
+        //FIXME: no value is returned
         // this.itemPrice = $label.find(this.productPrice).text();
         cy.get(this.inventoryItem)
           .eq(randomIndex)
@@ -83,6 +89,14 @@ export class ProductPage {
       });
   }
 
+  clickOnRemoveButton() {
+    cy.get(this.removeButton).should("be.visible").click();
+  }
+
+  assertEmptyInfoCart() {
+    cy.get(this.cartItem).should("not.exist");
+  }
+
   assertItemInfo() {
     cy.get(this.cartButton).click();
     cy.get(this.cartItem).should("have.length", 1);
@@ -90,7 +104,8 @@ export class ProductPage {
       .find(this.cartItemLabel)
       .then(($cartLabel) => {
         const cartItemName = $cartLabel.find(this.productName).text();
-        const cartItemPrice = $cartLabel.find(this.productPrice).text();
+        //FIXME: no value is returned
+        // const cartItemPrice = $cartLabel.find(this.productPrice).text();
         expect(this.itemName).to.eq(cartItemName);
         // expect(this.itemPrice).to.eq(cartItemPrice);
       });
