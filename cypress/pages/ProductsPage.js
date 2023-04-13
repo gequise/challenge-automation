@@ -56,22 +56,30 @@ export class ProductPage {
       });
   }
 
+  getRandomIndex(length) {
+    return Math.floor(Math.random() * length);
+  }
+
+  processSelectedItem(randomIndex) {
+    cy.get(this.inventoryItem)
+      .eq(randomIndex)
+      .find(this.inventoryItemLabel)
+      .then(($label) => {
+        this.itemName = $label.find(this.productName).text();
+        // this.itemPrice = $label.find(this.productPrice).text();
+        cy.get(this.inventoryItem)
+          .eq(randomIndex)
+          .find(this.inventoryButton)
+          .click();
+      });
+  }
+
   getRandomItem() {
     cy.get(this.inventoryItem)
       .its("length")
       .then(($length) => {
-        const randomIndex = Math.floor(Math.random() * $length);
-        cy.get(this.inventoryItem)
-          .eq(randomIndex)
-          .find(this.inventoryItemLabel)
-          .then(($label) => {
-            this.itemName = $label.find(this.productName).text();
-            // this.itemPrice = $label.find(this.productPrice).text();
-            cy.get(this.inventoryItem)
-              .eq(randomIndex)
-              .find(this.inventoryButton)
-              .click();
-          });
+        const randomIndex = this.getRandomIndex($length);
+        this.processSelectedItem(randomIndex);
       });
   }
 

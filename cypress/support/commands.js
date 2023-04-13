@@ -38,3 +38,14 @@ Cypress.Commands.add("login", () => {
   });
   cy.get(loginButton).click();
 });
+
+Cypress.Commands.add("verifyMercadoLibreDepartments", () => {
+  cy.request({
+    method: "GET",
+    url: "https://www.mercadolibre.com.ar/menu/departments",
+  }).then((response) => {
+    expect(response.status).to.eq(200);
+    expect(response.body.departments).to.exist;
+    expect(response.body.departments).to.be.an("array").that.is.not.empty;
+  });
+});
