@@ -49,3 +49,7 @@ Cypress.Commands.add("verifyMercadoLibreDepartments", () => {
     expect(response.body.departments).to.be.an("array").that.is.not.empty;
   });
 });
+
+Cypress.Commands.add("getByData", (selector) => {
+  return cy.get(`[data-test=${selector}]`);
+});

@@ -1,5 +1,6 @@
-export const ADD_TO_CART_BUTTON = "#add-to-cart-sauce-labs-bike-light";
-export const REMOVE_BUTTON = "#remove-sauce-labs-backpack";
+export const ADD_TO_CART_BUTTON =
+  '[data-test="add-to-cart-sauce-labs-bike-light"]';
+export const REMOVE_BUTTON = '[data-test="remove-sauce-labs-backpack"]';
 export const SHOPPING_CART_BUTTON = "#shopping_cart_container";
 export const SHOPPING_CART_BADGE = ".shopping_cart_badge";
 export const INVENTORY_ITEM = ".inventory_item";
