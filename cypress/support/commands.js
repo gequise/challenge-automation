@@ -25,16 +25,15 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add("login", () => {
-  const usernameInput = "#user-name";
-  const passwordInput = "#password";
-  const loginButton = "#login-button";
+  const usernameInput = '[data-test="username"]';
+  const passwordInput = '[data-test="password"]';
+  const loginButton = '[data-test="login-button"]';
 
-  let credentialData;
-  cy.fixture("saucedemoCredentials").then((fdata) => {
+  cy.fixture("saucedemoCredentials").then(function (credentialData) {
+    this.credentialData = credentialData;
     cy.visit("/");
-    credentialData = fdata;
-    cy.get(usernameInput).type(credentialData.valid_username);
-    cy.get(passwordInput).type(credentialData.valid_password);
+    cy.get(usernameInput).type(this.credentialData.valid_username);
+    cy.get(passwordInput).type(this.credentialData.valid_password);
   });
   cy.get(loginButton).click();
 });
