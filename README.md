@@ -46,8 +46,7 @@ npm run allure:serve
 ```
 
 ## URL REPORT
-
-https://gequise.github.io/challenge-automation
+https://gequise.github.io/cy-challenge-automation/
 
 ## CI
 See [github.com/gequise/challenge-automation/actions](https://github.com/gequise/challenge-automation/actions).
